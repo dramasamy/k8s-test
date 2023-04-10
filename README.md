@@ -21,6 +21,8 @@
 - `-parallelTests`: Number of tests within a suite to run in parallel (default: 1)
 - `-kubeconfig`: Path to the kubeconfig file (default: empty string)
 
+If no `-kubeconfig` option is provided, k8s-test will attempt to use the `KUBECONFIG` environment variable. If `KUBECONFIG` is not set, `k8s-test` will use the default `~/.kube/config` file.
+
 To run `k8s-test`, specify the test suites you want to run and the desired CLI options. For example:
 
 ```

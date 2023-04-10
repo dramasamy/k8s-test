@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
+	"path/filepath"
 
 	"github.com/dramasamy/k8s-test/libs"
 )
@@ -21,6 +23,13 @@ func init() {
 
 func main() {
 	flag.Parse()
+
+	if kubeconfig == "" {
+		kubeconfig = os.Getenv("KUBECONFIG")
+		if kubeconfig == "" {
+			kubeconfig = filepath.Join(os.Getenv("HOME"), ".kube", "config")
+		}
+	}
 
 	suites := []string{"configmap", "calico"}
 	err := libs.RunTests(suites, parallelSuites, parallelTests, kubeconfig)
