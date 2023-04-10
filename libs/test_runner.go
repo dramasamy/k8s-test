@@ -1,4 +1,4 @@
-package library
+package libs
 
 import (
 	"fmt"
@@ -9,13 +9,12 @@ import (
 
 func RunTests(suites []string, parallelSuites, parallelTests int, kubeconfig string) error {
 	var wg sync.WaitGroup
-	wg.Add(len(suites))
-
 	for _, suite := range suites {
+		wg.Add(1)
 		go func(suite string) {
 			defer wg.Done()
 
-			cmd := exec.Command("go", "test", "-tags="+suite, fmt.Sprintf("-parallel=%d", parallelTests), "github.com/dramasamy/k8s-test/tests/...")
+			cmd := exec.Command("go", "test", "-tags="+suite, "-count=1", fmt.Sprintf("-parallel=%d", parallelTests), "./tests/"+suite)
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
 			cmd.Env = append(os.Environ(), "KUBECONFIG="+kubeconfig)
@@ -28,5 +27,6 @@ func RunTests(suites []string, parallelSuites, parallelTests int, kubeconfig str
 	}
 
 	wg.Wait()
+
 	return nil
 }

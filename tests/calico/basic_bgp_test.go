@@ -4,9 +4,8 @@
 package calico
 
 import (
-	"testing"
-
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestCalicoBGPConfiguration(t *testing.T) {

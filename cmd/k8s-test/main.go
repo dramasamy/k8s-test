@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/dramasamy/k8s-test/library"
+	"github.com/dramasamy/k8s-test/libs"
 )
 
 var (
@@ -23,7 +23,7 @@ func main() {
 	flag.Parse()
 
 	suites := []string{"configmap", "calico"}
-	err := library.RunTests(suites, parallelSuites, parallelTests, kubeconfig)
+	err := libs.RunTests(suites, parallelSuites, parallelTests, kubeconfig)
 	if err != nil {
 		fmt.Printf("Error running tests: %v\n", err)
 	}

@@ -23,8 +23,22 @@
 
 To run `k8s-test`, specify the test suites you want to run and the desired CLI options. For example:
 
-```bash
-$ k8s-test -parallelSuites=2 -kubeconfig=path/to/kubeconfig.yaml configmap calico
+```
+k8s-test -parallelSuites=2 -kubeconfig=path/to/kubeconfig.yaml configmap calico
 ```
 
 This command will run the configmap and calico test suites in parallel, using the specified kubeconfig file.
+
+## Contributing
+
+To contribute to `k8s-test`, please follow these guidelines:
+
+1. Fork the repository and create a new branch for your feature or bug fix.
+2. Write tests for your code.
+3. Run `go test` and ensure that all tests pass.
+4. Submit a pull request.
+
+## License
+
+`k8s-test` is licensed under the MIT License. See the LICENSE file for more information.
+
